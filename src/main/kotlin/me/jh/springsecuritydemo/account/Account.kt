@@ -9,18 +9,14 @@ import javax.persistence.Id
 @Entity
 class Account(
     @Id @GeneratedValue
-    var id: Long?,
+    var id: Long? = null,
     @Column(unique = true)
     var username: String?,
     var password: String?,
     var role: String?
 ) {
-    constructor() : this(
-        id = null,
-        username = null,
-        password = null,
-        role = null
-    )
+
+    constructor() : this(username = null, password = null, role = null)
 
     fun encodePassword(passwordEncoder: PasswordEncoder) {
         password = passwordEncoder.encode(password)
